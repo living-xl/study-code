@@ -1,5 +1,6 @@
 package living.study;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.Arrays;
@@ -11,6 +12,7 @@ import java.util.concurrent.FutureTask;
 @BenchmarkMode(Mode.AverageTime)
 @Warmup(iterations = 3)
 @Measurement(iterations = 5)
+@Slf4j(topic = "my test-")
 public class MyJmhTestCode {
     static int[] ARRAY =new int[1000_000_00];
     static {
@@ -47,6 +49,7 @@ public class MyJmhTestCode {
             }
             return sum;
         });
+
         new Thread(t1).start();
         new Thread(t2).start();
         new Thread(t3).start();
@@ -62,4 +65,10 @@ public class MyJmhTestCode {
         }
         return sum;
     }
+
+//    public void test3(){
+//        Runnable r = ()-> log.info("runing");
+//    }
+
+
 }
